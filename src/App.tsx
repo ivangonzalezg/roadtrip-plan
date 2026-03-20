@@ -28,6 +28,7 @@ const audioSources: Record<AudioRegion, string> = {
 function App() {
   const [activeRegion, setActiveRegion] = useState<AudioRegion>("costa");
   const [isAudioEnabled, setIsAudioEnabled] = useState(false);
+  const [showAudioHint, setShowAudioHint] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const activeRegionRef = useRef<AudioRegion>("costa");
   const isAudioUnlockedRef = useRef(false);
@@ -73,29 +74,64 @@ function App() {
       if (error.name === "NotAllowedError") {
         isAudioUnlockedRef.current = false;
         setIsAudioEnabled(false);
+        setShowAudioHint(true);
       }
     });
   }, []);
 
-  const enableAudioFromGesture = (region: AudioRegion) => {
-    isAudioUnlockedRef.current = true;
-    activeRegionRef.current = region;
-    setActiveRegion(region);
-    setIsAudioEnabled(true);
-    syncAudio(region, true);
-  };
+  const enableAudioFromGesture = useCallback(
+    (region: AudioRegion) => {
+      isAudioUnlockedRef.current = true;
+      activeRegionRef.current = region;
+      setActiveRegion(region);
+      setIsAudioEnabled(true);
+      setShowAudioHint(false);
+      syncAudio(region, true);
+    },
+    [syncAudio],
+  );
 
-  const disableAudio = () => {
+  const disableAudio = useCallback(() => {
     isAudioUnlockedRef.current = false;
     setIsAudioEnabled(false);
+    setShowAudioHint(true);
     if (audioRef.current) {
       audioRef.current.pause();
     }
-  };
+  }, []);
 
   useEffect(() => {
     syncAudio(activeRegion, isAudioEnabled);
   }, [activeRegion, isAudioEnabled, syncAudio]);
+
+  useEffect(() => {
+    const audio = new Audio(audioSources.costa);
+    audio.loop = true;
+    audio.preload = "auto";
+    audio.volume = 0.9;
+    audioRef.current = audio;
+
+    const autoplayPromise = audio.play();
+
+    autoplayPromise
+      ?.then(() => {
+        isAudioUnlockedRef.current = true;
+        activeRegionRef.current = "costa";
+        setActiveRegion("costa");
+        setIsAudioEnabled(true);
+        setShowAudioHint(false);
+      })
+      .catch(() => {
+        setShowAudioHint(true);
+      });
+
+    return () => {
+      audio.pause();
+      if (audioRef.current === audio) {
+        audioRef.current = null;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -130,6 +166,11 @@ function App() {
   }, []);
 
   const handleRegionChange = (region: Exclude<AudioRegion, "costa">) => {
+    if (!isAudioEnabled) {
+      enableAudioFromGesture(region);
+      return;
+    }
+
     if (activeRegionRef.current !== region) {
       activeRegionRef.current = region;
       setActiveRegion(region);
@@ -166,6 +207,12 @@ function App() {
           name={isAudioEnabled ? "volume_up" : "volume_off"}
         />
       </button>
+
+      {showAudioHint && !isAudioEnabled ? (
+        <div className="pointer-events-none fixed right-4 top-18 z-50 max-w-52 rounded-2xl border border-white/35 bg-[rgba(95,26,7,0.74)] px-4 py-3 text-sm italic text-white shadow-[0_14px_30px_rgba(49,13,4,0.22)] backdrop-blur-md">
+          Toca el botón pa que se prenda esta vuelta.
+        </div>
+      ) : null}
 
       <HeroSection
         isAudioEnabled={isAudioEnabled}
