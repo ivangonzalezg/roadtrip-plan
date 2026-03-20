@@ -1,6 +1,5 @@
 import { CtaSection } from './components/CtaSection'
 import { FloatingActionButton } from './components/FloatingActionButton'
-import { Footer } from './components/Footer'
 import { HeroSection } from './components/HeroSection'
 import { JournalTimeline } from './components/JournalTimeline'
 import { Navbar } from './components/Navbar'
@@ -13,7 +12,6 @@ function App() {
       <HeroSection />
       <JournalTimeline days={itineraryDays} />
       <CtaSection />
-      <Footer />
       <FloatingActionButton />
     </div>
   )
