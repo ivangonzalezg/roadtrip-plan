@@ -1,15 +1,15 @@
-import bahiaDeRiohachaImage from "../assets/bahia-de-riohacha.png";
-import barranquillaImage from "../assets/barranquilla.png";
-import caboDeLaVelaImage from "../assets/cabo-de-la-vela.png";
-import castilloSanFelipeImage from "../assets/castillo-san-felipe.png";
-import centroCartagenaImage from "../assets/centro-cartagena.png";
-import islasDelRosarioImage from "../assets/islas-del-rosario.png";
-import mincaImage from "../assets/minca.png";
-import palominoImage from "../assets/palomino.png";
-import puntaGallinasImage from "../assets/punta-gallinas.png";
-import riohachaImage from "../assets/riohacha.png";
-import santaMartaImage from "../assets/santa-marta.png";
-import tayronaImage from "../assets/tayrona.png";
+import bahiaDeRiohachaImage from "../assets/images/bahia-de-riohacha.png";
+import barranquillaImage from "../assets/images/barranquilla.png";
+import caboDeLaVelaImage from "../assets/images/cabo-de-la-vela.png";
+import castilloSanFelipeImage from "../assets/images/castillo-san-felipe.png";
+import centroCartagenaImage from "../assets/images/centro-cartagena.png";
+import islasDelRosarioImage from "../assets/images/islas-del-rosario.png";
+import mincaImage from "../assets/images/minca.png";
+import palominoImage from "../assets/images/palomino.png";
+import puntaGallinasImage from "../assets/images/punta-gallinas.png";
+import riohachaImage from "../assets/images/riohacha.png";
+import santaMartaImage from "../assets/images/santa-marta.png";
+import tayronaImage from "../assets/images/tayrona.png";
 import type { JournalEntryData } from "../components/JournalEntry";
 
 export const itineraryDays: JournalEntryData[] = [

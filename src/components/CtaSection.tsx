@@ -1,4 +1,4 @@
-import costaCollage from "../assets/costa-1.png";
+import costaCollage from "../assets/images/costa-1.png";
 import { MaterialSymbol } from "./MaterialSymbol";
 
 export function CtaSection() {
