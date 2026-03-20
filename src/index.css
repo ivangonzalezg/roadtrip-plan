@@ -104,6 +104,12 @@ img {
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.min-h-dynamic-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .story-shell {

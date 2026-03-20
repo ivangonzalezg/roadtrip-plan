@@ -201,7 +201,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-(--color-paper) text-(--color-ink)">
+    <div className="min-h-dynamic-screen bg-(--color-paper) text-(--color-ink)">
       <button
         aria-label={isAudioEnabled ? "Silenciar ambiente" : "Activar ambiente"}
         className="fixed right-4 top-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-[rgba(255,248,235,0.82)] text-(--color-sepia-dark) shadow-[0_16px_36px_rgba(97,31,9,0.18)] backdrop-blur-md transition duration-300 hover:scale-[1.03] active:scale-95"

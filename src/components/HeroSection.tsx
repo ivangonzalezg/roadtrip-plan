@@ -13,7 +13,7 @@ export function HeroSection({
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-6"
+      className="min-h-dynamic-screen relative flex items-center justify-center overflow-hidden px-6"
     >
       <div className="absolute inset-0">
         <img
