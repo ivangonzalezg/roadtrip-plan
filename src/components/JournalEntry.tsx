@@ -2,16 +2,13 @@ import { MaterialSymbol } from './MaterialSymbol'
 
 export type JournalEntryData = {
   dayLabel: string
+  highlight: string
+  highlightIcon: string
   imageAlt: string
   imageUrl: string
   location: string
-  schedule: Array<{
-    description: string
-    label: string
-  }>
+  story: string[]
   title: string
-  transport: string
-  transportIcon: string
   variant: 'brown' | 'blue' | 'green'
 }
 
@@ -94,17 +91,15 @@ export function JournalEntry({ day, index }: JournalEntryProps) {
           {day.title}
         </h2>
 
-        <div className="mt-5 space-y-4 text-lg italic text-[color:color-mix(in_oklab,var(--color-ink)_90%,transparent)]">
-          {day.schedule.map((item) => (
-            <p key={item.label}>
-              <strong>{item.label}:</strong> {item.description}
-            </p>
+        <div className="mt-5 space-y-4 text-lg italic leading-relaxed text-[color:color-mix(in_oklab,var(--color-ink)_90%,transparent)]">
+          {day.story.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
 
-        <div className="mt-8 flex items-center gap-3 text-sm text-[var(--color-jungle)]">
-          <MaterialSymbol className="text-xl" name={day.transportIcon} />
-          <span className="font-semibold italic">{day.transport}</span>
+        <div className="mt-8 flex items-center gap-3 rounded-full bg-white/45 px-4 py-3 text-sm text-[var(--color-jungle)] shadow-[0_10px_30px_rgba(62,39,35,0.08)]">
+          <MaterialSymbol className="text-xl" name={day.highlightIcon} />
+          <span className="font-semibold italic">{day.highlight}</span>
         </div>
       </div>
     </article>
