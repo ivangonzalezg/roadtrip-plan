@@ -4,9 +4,7 @@ import { JournalEntry } from "./JournalEntry";
 
 type JournalTimelineProps = {
   days: JournalEntryData[];
-  onRegionChange: (
-    region: JournalEntryData["audioRegion"],
-  ) => void;
+  onRegionChange: (region: JournalEntryData["audioRegion"]) => void;
 };
 
 export function JournalTimeline({
@@ -45,8 +43,9 @@ export function JournalTimeline({
           };
         })
         .filter((entry) => entry.isVisible)
-        .sort((entryA, entryB) => entryA.distanceToCenter - entryB.distanceToCenter)[0]
-        ?.entry;
+        .sort(
+          (entryA, entryB) => entryA.distanceToCenter - entryB.distanceToCenter,
+        )[0]?.entry;
 
       const nextRegion = nextEntry?.dataset.audioRegion as
         | JournalEntryData["audioRegion"]
@@ -69,7 +68,29 @@ export function JournalTimeline({
 
   return (
     <main id="bitacora" className="relative mx-auto max-w-6xl px-6 md:px-8">
-      <section id="ruta" ref={routeRef}>
+      <section
+        id="ruta"
+        aria-labelledby="ruta-heading"
+        className="pt-8 md:pt-12"
+        ref={routeRef}
+      >
+        <div className="story-shell mx-auto max-w-3xl text-center">
+          <p className="text-sm uppercase tracking-[0.24em] text-(--color-earth)/80">
+            La ruta
+          </p>
+          <h2
+            id="ruta-heading"
+            className="mt-4 font-(--font-display) text-5xl leading-[0.95] text-(--color-sepia-dark) sm:text-6xl"
+          >
+            Así va este paseo por la costa
+          </h2>
+          <p className="mt-5 text-lg italic leading-relaxed text-[color-mix(in_oklab,var(--color-ink)_86%,transparent)]">
+            Acá está el plan completo, parada por parada, pa que se antojen del
+            viaje y vean cómo se va poniendo bueno desde Cartagena hasta La
+            Guajira.
+          </p>
+        </div>
+
         {days.map((day, index) => (
           <JournalEntry
             key={`${day.dayLabel}-${day.location}`}

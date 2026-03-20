@@ -51,7 +51,7 @@ export function JournalEntry({ day, index }: JournalEntryProps) {
   const reverseDesktop = index % 2 === 1;
   const imageSizing = imageClasses[index] ?? "aspect-[4/3]";
 
-      return (
+  return (
     <article
       className="journal-entry story-shell grid items-center gap-8 py-16 md:grid-cols-12 md:gap-12 md:py-20"
       data-audio-region={day.audioRegion}
@@ -70,6 +70,8 @@ export function JournalEntry({ day, index }: JournalEntryProps) {
             index === 0 || index === 8 ? "grayscale-[0.15]" : "",
             index === 10 ? "brightness-110" : "",
           ].join(" ")}
+          decoding="async"
+          loading={index < 2 ? "eager" : "lazy"}
           src={day.imageUrl}
         />
       </div>
@@ -90,9 +92,9 @@ export function JournalEntry({ day, index }: JournalEntryProps) {
           {day.dayLabel}: {day.location}
         </span>
 
-        <h2 className="mt-2 font-(--font-display) text-5xl leading-[0.92] text-(--color-sepia-dark) sm:text-6xl">
+        <h3 className="mt-2 font-(--font-display) text-5xl leading-[0.92] text-(--color-sepia-dark) sm:text-6xl">
           {day.title}
-        </h2>
+        </h3>
 
         <div className="mt-5 space-y-4 text-lg italic leading-relaxed text-[color-mix(in_oklab,var(--color-ink)_90%,transparent)]">
           {day.story.map((paragraph) => (

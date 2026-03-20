@@ -19,6 +19,9 @@ export function HeroSection({
         <img
           alt="Paisaje vibrante de la costa Caribe colombiana"
           className="h-full w-full object-cover object-center brightness-[0.6] saturate-[1.08]"
+          decoding="async"
+          fetchPriority="high"
+          loading="eager"
           src={heroImage}
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,214,10,0.28),transparent_24%),radial-gradient(circle_at_right,rgba(0,180,216,0.24),transparent_28%),linear-gradient(180deg,rgba(50,13,5,0.22),rgba(50,13,5,0.08)_38%,var(--color-paper)_100%)]" />

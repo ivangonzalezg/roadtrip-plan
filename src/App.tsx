@@ -32,6 +32,7 @@ function App() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const activeRegionRef = useRef<AudioRegion>("costa");
   const isAudioUnlockedRef = useRef(false);
+  const canAutoEnableFromScrollRef = useRef(true);
 
   const syncAudio = useCallback((region: AudioRegion, enabled: boolean) => {
     let audio = audioRef.current;
@@ -73,6 +74,7 @@ function App() {
 
       if (error.name === "NotAllowedError") {
         isAudioUnlockedRef.current = false;
+        canAutoEnableFromScrollRef.current = true;
         setIsAudioEnabled(false);
         setShowAudioHint(true);
       }
@@ -81,10 +83,11 @@ function App() {
 
   const enableAudioFromGesture = useCallback(
     (region: AudioRegion) => {
-      isAudioUnlockedRef.current = true;
-      activeRegionRef.current = region;
-      setActiveRegion(region);
-      setIsAudioEnabled(true);
+    isAudioUnlockedRef.current = true;
+    canAutoEnableFromScrollRef.current = false;
+    activeRegionRef.current = region;
+    setActiveRegion(region);
+    setIsAudioEnabled(true);
       setShowAudioHint(false);
       syncAudio(region, true);
     },
@@ -93,6 +96,7 @@ function App() {
 
   const disableAudio = useCallback(() => {
     isAudioUnlockedRef.current = false;
+    canAutoEnableFromScrollRef.current = false;
     setIsAudioEnabled(false);
     setShowAudioHint(true);
     if (audioRef.current) {
@@ -116,12 +120,14 @@ function App() {
     autoplayPromise
       ?.then(() => {
         isAudioUnlockedRef.current = true;
+        canAutoEnableFromScrollRef.current = false;
         activeRegionRef.current = "costa";
         setActiveRegion("costa");
         setIsAudioEnabled(true);
         setShowAudioHint(false);
       })
       .catch(() => {
+        canAutoEnableFromScrollRef.current = true;
         setShowAudioHint(true);
       });
 
@@ -166,7 +172,7 @@ function App() {
   }, []);
 
   const handleRegionChange = (region: Exclude<AudioRegion, "costa">) => {
-    if (!isAudioEnabled) {
+    if (!isAudioEnabled && canAutoEnableFromScrollRef.current) {
       enableAudioFromGesture(region);
       return;
     }
