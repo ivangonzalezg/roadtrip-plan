@@ -1,8 +1,14 @@
 import { MaterialSymbol } from "./MaterialSymbol";
 
+type JournalEntryDetail = {
+  label: string;
+  value: string;
+};
+
 export type JournalEntryData = {
   audioRegion: "barranquilla" | "cartagena" | "guajira" | "santa-marta";
   dayLabel: string;
+  details?: JournalEntryDetail[];
   highlight: string;
   highlightIcon: string;
   imageAlt: string;
@@ -101,6 +107,24 @@ export function JournalEntry({ day, index }: JournalEntryProps) {
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+
+        {day.details?.length ? (
+          <dl className="mt-6 space-y-3 rounded-3xl bg-[rgba(255,249,239,0.68)] px-5 py-4 text-sm text-(--color-sepia-dark) ring-1 ring-[rgba(107,79,53,0.12)]">
+            {day.details.map((detail) => (
+              <div
+                key={`${detail.label}-${detail.value}`}
+                className="grid gap-1 md:grid-cols-[92px_1fr] md:gap-3"
+              >
+                <dt className="font-(--font-display) text-base text-[color-mix(in_oklab,var(--color-earth)_78%,black)]">
+                  {detail.label}
+                </dt>
+                <dd className="leading-relaxed text-[color-mix(in_oklab,var(--color-ink)_88%,transparent)]">
+                  {detail.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
 
         <div className="mt-8 flex items-center gap-3 rounded-full bg-[rgba(255,249,239,0.78)] px-4 py-3 text-sm text-(--color-sepia-dark) shadow-[0_10px_30px_rgba(62,39,35,0.08)]">
           <MaterialSymbol
