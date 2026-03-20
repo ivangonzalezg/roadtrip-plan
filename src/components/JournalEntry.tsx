@@ -1,6 +1,7 @@
 import { MaterialSymbol } from "./MaterialSymbol";
 
 export type JournalEntryData = {
+  audioRegion: "barranquilla" | "cartagena" | "guajira" | "santa-marta";
   dayLabel: string;
   highlight: string;
   highlightIcon: string;
@@ -50,8 +51,11 @@ export function JournalEntry({ day, index }: JournalEntryProps) {
   const reverseDesktop = index % 2 === 1;
   const imageSizing = imageClasses[index] ?? "aspect-[4/3]";
 
-  return (
-    <article className="journal-entry story-shell grid items-center gap-8 py-16 md:grid-cols-12 md:gap-12 md:py-20">
+      return (
+    <article
+      className="journal-entry story-shell grid items-center gap-8 py-16 md:grid-cols-12 md:gap-12 md:py-20"
+      data-audio-region={day.audioRegion}
+    >
       <div
         className={[
           "polaroid-frame md:col-span-7",

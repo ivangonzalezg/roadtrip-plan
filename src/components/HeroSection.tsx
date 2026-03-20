@@ -1,7 +1,15 @@
 import heroImage from "../assets/images/hero.png";
 import { MaterialSymbol } from "./MaterialSymbol";
 
-export function HeroSection() {
+type HeroSectionProps = {
+  isAudioEnabled: boolean;
+  onPrimaryAction: () => void;
+};
+
+export function HeroSection({
+  isAudioEnabled,
+  onPrimaryAction,
+}: HeroSectionProps) {
   return (
     <section
       id="top"
@@ -35,9 +43,13 @@ export function HeroSection() {
         </p>
 
         <div className="mt-12 flex flex-col items-center gap-4 text-white/92">
-          <a className="journal-button-primary" href="#ruta">
-            Ver la ruta
-          </a>
+          <button
+            className="journal-button-primary cursor-pointer"
+            onClick={onPrimaryAction}
+            type="button"
+          >
+            {isAudioEnabled ? "Sigue el viaje" : "Dale play al paseo"}
+          </button>
           <div className="flex flex-col items-center">
             <span className="rounded-full bg-white/10 px-4 py-1 text-base italic tracking-[0.08em] text-white/88 backdrop-blur-sm">
               Baja y mira cómo se prende el viaje

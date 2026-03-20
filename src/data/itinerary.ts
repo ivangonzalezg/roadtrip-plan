@@ -14,6 +14,7 @@ import type { JournalEntryData } from "../components/JournalEntry";
 
 export const itineraryDays: JournalEntryData[] = [
   {
+    audioRegion: "cartagena",
     dayLabel: "Día 1",
     highlight: "Vibras coloniales y trazos urbanos.",
     highlightIcon: "home_pin",
@@ -28,6 +29,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "brown",
   },
   {
+    audioRegion: "cartagena",
     dayLabel: "Día 2",
     highlight: "Cartagena se saborea mejor sin afán.",
     highlightIcon: "church",
@@ -42,6 +44,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "brown",
   },
   {
+    audioRegion: "cartagena",
     dayLabel: "Día 3",
     highlight: "Sal en la piel, mar en el alma.",
     highlightIcon: "waves",
@@ -56,6 +59,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "blue",
   },
   {
+    audioRegion: "barranquilla",
     dayLabel: "Día 4",
     highlight: "Río, ciudad y puro tumbao costeño.",
     highlightIcon: "music_note",
@@ -70,6 +74,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "brown",
   },
   {
+    audioRegion: "santa-marta",
     dayLabel: "Día 5",
     highlight: "Noches tibias y brisa frente al mar.",
     highlightIcon: "wb_twilight",
@@ -84,6 +89,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "brown",
   },
   {
+    audioRegion: "santa-marta",
     dayLabel: "Día 6",
     highlight: "Donde la selva termina besando el mar.",
     highlightIcon: "forest",
@@ -98,6 +104,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "green",
   },
   {
+    audioRegion: "santa-marta",
     dayLabel: "Día 7",
     highlight: "Café, neblina y monte que abraza.",
     highlightIcon: "coffee",
@@ -112,6 +119,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "green",
   },
   {
+    audioRegion: "guajira",
     dayLabel: "Día 8",
     highlight: "Río dulce y Caribe sin apuro.",
     highlightIcon: "kayaking",
@@ -126,6 +134,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "blue",
   },
   {
+    audioRegion: "guajira",
     dayLabel: "Día 9",
     highlight: "La Guajira empieza a hablar bajito.",
     highlightIcon: "diamond",
@@ -140,6 +149,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "brown",
   },
   {
+    audioRegion: "guajira",
     dayLabel: "Día 10",
     highlight: "Aquí el tiempo se detiene y solo queda el viento.",
     highlightIcon: "air",
@@ -154,6 +164,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "brown",
   },
   {
+    audioRegion: "guajira",
     dayLabel: "Día 11",
     highlight: "Dunas al mar y cielo sin final.",
     highlightIcon: "explore",
@@ -168,6 +179,7 @@ export const itineraryDays: JournalEntryData[] = [
     variant: "brown",
   },
   {
+    audioRegion: "guajira",
     dayLabel: "Día 12",
     highlight: "Volvemos distintos, con el Caribe encima.",
     highlightIcon: "flight_takeoff",
